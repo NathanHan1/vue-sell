@@ -7,7 +7,6 @@ import VueResource from 'vue-resource';
 import './common/stylus/index.styl';
 /* eslint-disable no-new */
 
-Vue.config.productionTip = false;
 Vue.use(VueResource);
 
 new Vue({

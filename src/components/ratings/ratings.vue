@@ -60,8 +60,10 @@ import {formatDate} from '../../common/js/date.js';
 import split from '../split/split.vue';
 import ratingselect from '../ratingselect/ratingselect.vue';
 import star from '../star/star.vue';
+
 const ALL = 2;
 const ERR_OK = 0;
+const debug = process.env.NODE_ENV !== 'production';
 
 export default{
 		props: {
@@ -77,7 +79,8 @@ export default{
 			};
 		},
 		created() {
-				this.$http.get('/api/ratings').then((response) => {
+				const url = debug ? '/api/ratings' : 'http://hanzhibang.cn/sell/api/ratings';
+				this.$http.get(url).then((response) => {
 					response = response.body;
 					if (response.errno === ERR_OK) {
 						this.ratings = response.data;

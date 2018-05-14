@@ -51,6 +51,7 @@ import BScroll from 'better-scroll';
 import food from '../food/food.vue';
 
 const ERR_OK = 0;
+const debug = process.env.NODE_ENV !== 'production';
 
 	export default {
 		/* eslint-disable */
@@ -68,8 +69,9 @@ const ERR_OK = 0;
 			};
 		},
 		created() {
+			const url = debug ? '/api/goods' : 'http://hanzhibang.cn/sell/api/goods';
 			this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
-			this.$http.get('api/goods').then((response) => {
+			this.$http.get(url).then((response) => {
 				response = response.body;
 				if (response.errno === ERR_OK) {
 					this.goods = response.data;
